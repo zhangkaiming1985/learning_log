@@ -1,0 +1,19 @@
+{% extends "learning_logs/base.html" %}
+
+<!--重写base的block-->
+{% block content %}
+
+ <!--显示当前主题，为context中的topic-->
+  <p><a href="{% url 'learning_logs:topic' topic.id%}" >{{ topic }}</a></p>
+
+  <p>Add a new entry:</p>
+
+  <form action="{% url 'learning_logs:new_entry' topic.id %}" method="post">
+      <!--防止跨站请求伪造-->
+      {% csrf_token %}
+      <!--生成表单-->
+      {{ form.as_p }}
+      <button name="submit">add entry</button>
+  </form>
+
+{% endblock content %}
