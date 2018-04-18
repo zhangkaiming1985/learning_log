@@ -1,0 +1,21 @@
+{% extends "learning_logs/base.html" %}
+
+<!--重写base的block-->
+{% block content %}
+
+    <!--显示当前主题，为context中的topic-->
+  <p>Topics:{{ topic }}</p>
+
+  <p>Entries:</p>
+  <ul>
+      {% for entry in entries %}
+        <li>
+            <p>{{ entry.date_added|date:'M d, Y H:i' }}</p>
+            <p>{{ entry.text|linebreaks }}</p>
+        </li>
+      {% empty %}
+        <li>No entry have been added yet.</li>
+      {% endfor %}
+  </ul>
+
+{% endblock content %}
